@@ -1,0 +1,12 @@
+시간 = int(input())
+
+result = 0
+
+for 시 in range(시간 + 1) :
+  for 분 in range(60) :
+    for 초 in range(60) :
+      
+      if 시%10==3 or 시//10==3 or 분%10==3 or 분//10==3 or 초%10==3 or 초//10==3 :
+        result += 1
+
+print(result)
