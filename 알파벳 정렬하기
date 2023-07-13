@@ -1,0 +1,13 @@
+a = input()
+b = []
+c = []
+for i in range(len(a)):
+    if (a[i].isalpha())==True:
+      b.append(a[i])
+    else:
+      c.append(a[i])
+b.sort()
+c.sort()
+b.extend(c)
+result = ''.join(b)
+print(result)
