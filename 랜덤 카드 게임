@@ -1,0 +1,206 @@
+import random
+import time
+
+result1=[]
+result2=[]
+
+total1, total2 = 0,0
+
+MyDeck1 = []
+RandomDeck1 = random.sample(range(13), 13)
+
+MyDeck2 = []
+RandomDeck2 = random.sample(range(13), 13)
+
+#카드
+
+card = r"""
+ -----   -----   -----   -----   -----   -----   ----- 
+|     | |     | |     | |     | |     | |     | |     |
+|  1  | |  2  | |  3  | |  4  | |  5  | |  6  | |  7  |
+|     | |     | |     | |     | |     | |     | |     |
+ -----   -----   -----   -----   -----   -----   ----- 
+     -----   -----   -----   -----   -----   -----
+    |     | |     | |     | |     | |     | |     |
+    |  8  | |  9  | |  t  | |  j  | |  q  | |  k  |
+    |     | |     | |     | |     | |     | |     |
+     -----   -----   -----   -----   -----   -----
+ """
+
+cards = [
+r"""  
+ ----- 
+|A    |
+|  ♠  |
+|    A|
+ -----
+""",
+    r"""
+ ----- 
+|2    |
+|  ♠  |
+|    2|
+ -----
+""",
+    r"""
+ ----- 
+|3    |
+|  ♠  |
+|    3|
+ -----
+""",
+    r"""
+ ----- 
+|4    |
+|  ♠  |
+|    4|
+ -----
+""",
+    r"""
+ ----- 
+|5    |
+|  ♠  |
+|    5|
+ -----
+""",
+    r"""
+ ----- 
+|6    |
+|  ♠  |
+|    6|
+ -----
+""",
+    r"""
+ ----- 
+|7    |
+|  ♠  |
+|    7|
+ -----
+""",
+    r"""
+ ----- 
+|8    |
+|  ♠  |
+|    8|
+ -----
+""",
+    r"""
+ ----- 
+|9    |
+|  ♠  |
+|    9|
+ -----
+""",
+    r"""
+ ----- 
+|10   |
+|  ♠  |
+|   10|
+ -----
+""",
+    r"""
+ ----- 
+|J    |
+|  ♠  |
+|    J|
+ -----
+""",
+    r"""
+ ----- 
+|Q    |
+|  ♠  |
+|    Q|
+ -----
+""",
+    r"""
+ ----- 
+|K    |
+|  ♠  |
+|    K|
+ -----
+"""
+]
+
+#랜덤한 숫자
+
+# 플레이어 1
+print("게임을 시작합니다.")
+print("-" * 50)
+time.sleep(1)
+
+print(card)
+
+print("-" * 50)
+time.sleep(1)
+
+
+# 카드를 선택하여 중복값 여부 확인후 카드를 덱에 추가
+while len(MyDeck1) < 3:
+    try:
+        choise = int(input("13개의 숫자 중 뽑을 숫자을 선택해주세요. : ")) -1  # 입력값을 정수로 변환 인덱스는 0부터 시작하기에 -1
+        print("-" * 50)
+        if choise in RandomDeck1 and choise not in MyDeck1:  # 중복된 값이 없을 때만 추가
+            MyDeck1.append(choise)
+        else:
+            print("유효하지 않거나 이미 입력된 숫자입니다. 다른 숫자를 입력하세요.")
+            print("-" * 50)
+    except ValueError:
+        print("유효한 숫자를 입력하세요.")
+        print("-" * 50)
+
+# 덱에 있는 카드를 차례대로 출력
+for index in MyDeck1:
+    if 0 <= index < len(cards):  # 입력한 숫자가 유효한 인덱스 범위 내에 있는지 확인
+        print(cards[RandomDeck1[index]]) 
+        print("-"*50)
+        time.sleep(0.5)
+        result1.append(RandomDeck1[index])  # 덱에 있는 카드(수)들을 합산
+
+while len(result1)!=0 :
+  total1 += result1.pop() + 1
+
+#플레이어2
+print("게임을 시작합니다.")
+print("-" * 50)
+time.sleep(1)
+
+print(card)
+
+print("-" * 50)
+time.sleep(1)
+
+# 카드를 선택하여 중복값 여부 확인후 카드를 덱에 추가
+while len(MyDeck2) < 3:
+    try:
+        choise = int(input("13개의 숫자 중 뽑을 숫자을 선택해주세요. : "))-1  # 입력값을 정수로 변환
+        print("-" * 50)
+        if choise in RandomDeck2 and choise not in MyDeck2:  # 중복된 값이 없을 때만 추가
+            MyDeck2.append(choise)
+        else:
+            print("유효하지 않거나 이미 입력된 숫자입니다. 다른 숫자를 입력하세요.")
+    except ValueError:
+        print("유효한 숫자를 입력하세요.")
+        print("-" * 50)
+
+# 덱에 있는 카드를 차례대로 출력
+for index in MyDeck2:
+    if 0 <= index < len(cards):  # 입력한 숫자가 유효한 인덱스 범위 내에 있는지 확인
+        print(cards[RandomDeck2[index]]) 
+        print("-"*50)
+        time.sleep(0.5)
+        result2.append(RandomDeck2[index])  # 덱에 있는 카드(수)들을 합산
+
+while len(result2)!=0 :
+  total2 += result2.pop() + 1
+
+# 플레이어 합 계산후 승패 결정
+
+if total1>total2:
+    time.sleep(1)
+    print("1번 승리")
+elif total1<total2:
+    time.sleep(1)
+    print("2번 승리")
+else:
+    time.sleep(1)
+    print("무승부")
